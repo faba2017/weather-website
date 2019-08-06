@@ -8,14 +8,14 @@ const forecast = (latitude, longitude, callback) =>{
 
      if (error) {
 
-         callback('Unable to connect to the location service', undefined)
+         callback('Unable to connect to weather service!', undefined)
 
-     }else if(body.error) {
+     }else if (body.error) {
+         callback(' Unable to find loation', undefined)
 
-         callback(' address not found. please try another search', undefined)
      }else {
-         callback(undefined,  console.log (body.daily.data[0].summary + ' It is Currently ' +body.currently.temperature + ' degrees out. There is a ' +body.currently.precipProbability + '% chance of rain.')  )
-         
+         callback(undefined,  body.daily.data[0].summary + ' It is Currently ' +body.currently.temperature + ' degrees out. The high today is ' + body.daily.data[0].temperatureHigh + ' with a low of ' + body.daily.data[0].temperatureLow + '.  There is a ' +body.currently.precipProbability + '% chance of rain.')
+      
      }
  }) 
 }
